@@ -3,6 +3,10 @@ import pyxel
 class BlockBreaker:
     def __init__(self):
         pyxel.init(160, 120, title="Block Breaker")
+        self.reset()
+        pyxel.run(self.update, self.draw)
+
+    def reset(self):
         self.score = 0
         self.page = 1
         self.paddle_x = 70
@@ -11,9 +15,10 @@ class BlockBreaker:
         self.ball_dx = 2
         self.ball_dy = 2
         self.blocks = [(x, y) for x in range(20, 140, 20) for y in range(10, 40, 10)]
-        pyxel.run(self.update, self.draw)
 
     def update(self):
+        if pyxel.btnp(pyxel.KEY_Q):
+            pyxel.quit()
         # ページ1
         if self.page == 1:
             # パドルの移動
@@ -60,17 +65,25 @@ class BlockBreaker:
         if self.page == 2:
             # リトライ
             if pyxel.btn(pyxel.KEY_R):
-                self.page = 1
-                self.ball_x, self.ball_y = 80, 60
-                self.ball_dx, self.ball_dy = 2, 2
+                self.reset()
+                #self.page = 1
+                #self.ball_x, self.ball_y = 80, 60
+                #self.ball_dx, self.ball_dy = 2, 2
+
+            # ウィンドウを閉じる
+            if pyxel.btnp(pyxel.KEY_Q):
+                print("Quitting...")
+                pyxel.quit()
 
         # ページ3
         if self.page == 3:
             # リトライ
             if pyxel.btn(pyxel.KEY_R):
-                self.page = 1
-                self.ball_x, self.ball_y = 80, 60
-                self.ball_dx, self.ball_dy = 2, 2
+                self.reset()
+
+            # ウィンドウを閉じる
+            if pyxel.btn(pyxel.KEY_Q):
+                pyxel.quit()
 
 
     def draw(self):
@@ -95,7 +108,7 @@ class BlockBreaker:
 
         # ページ3（ゲームクリア画面）の描画
         if self.page == 3:
-            pyxel.text(63,55,f"GAMECLEAR!",pyxel.COLOR_YELLOW)
+            pyxel.text(63,50,f"GAMECLEAR!",pyxel.COLOR_YELLOW)
             pyxel.text(63,60,f"RETRY:[R]",pyxel.COLOR_WHITE)
             pyxel.text(63,70,f"QUIT:[Q]",pyxel.COLOR_WHITE)
 
