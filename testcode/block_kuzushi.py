@@ -17,8 +17,6 @@ class BlockBreaker:
         self.blocks = [(x, y) for x in range(20, 140, 20) for y in range(10, 40, 10)]
 
     def update(self):
-        if pyxel.btnp(pyxel.KEY_Q):
-            pyxel.quit()
         # ページ1
         if self.page == 1:
             # パドルの移動
