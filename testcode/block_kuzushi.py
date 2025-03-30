@@ -62,25 +62,25 @@ class BlockBreaker:
         # ページ2
         if self.page == 2:
             # リトライ
-            if pyxel.btn(pyxel.KEY_R):
+            if pyxel.btn(pyxel.KEY_R) or pyxel.btn(2):
                 self.reset()
                 #self.page = 1
                 #self.ball_x, self.ball_y = 80, 60
                 #self.ball_dx, self.ball_dy = 2, 2
 
             # ウィンドウを閉じる
-            if pyxel.btnp(pyxel.KEY_Q):
+            if pyxel.btnp(pyxel.KEY_Q) or pyxel.btnp(3):
                 print("Quitting...")
                 pyxel.quit()
 
         # ページ3
         if self.page == 3:
             # リトライ
-            if pyxel.btn(pyxel.KEY_R):
+            if pyxel.btn(pyxel.KEY_R) or pyxel.btn(2):
                 self.reset()
 
             # ウィンドウを閉じる
-            if pyxel.btn(pyxel.KEY_Q):
+            if pyxel.btn(pyxel.KEY_Q) or pyxel.btnp(3):
                 pyxel.quit()
 
 
@@ -100,15 +100,15 @@ class BlockBreaker:
 
         # ページ2（ゲームオーバー画面）の描画    
         if self.page == 2:
-            pyxel.text(63,50,f"GAMEOVER",pyxel.COLOR_RED)
-            pyxel.text(63,60,f"RETRY:[R]",pyxel.COLOR_WHITE)
-            pyxel.text(63,70,f"QUIT:[Q]",pyxel.COLOR_WHITE)
+            pyxel.text(63,50,f"GAMEOVER...",pyxel.COLOR_RED)
+            pyxel.text(50,60,f"RETRY:[R] or [X]",pyxel.COLOR_WHITE)
+            pyxel.text(52,70,f"QUIT:[Q] or [y]",pyxel.COLOR_WHITE)
 
         # ページ3（ゲームクリア画面）の描画
         if self.page == 3:
             pyxel.text(63,50,f"GAMECLEAR!",pyxel.COLOR_YELLOW)
-            pyxel.text(63,60,f"RETRY:[R]",pyxel.COLOR_WHITE)
-            pyxel.text(63,70,f"QUIT:[Q]",pyxel.COLOR_WHITE)
+            pyxel.text(50,60,f"RETRY:[R] or [X]",pyxel.COLOR_WHITE)
+            pyxel.text(52,70,f"QUIT:[Q] or [Y]",pyxel.COLOR_WHITE)
 
 
 BlockBreaker()
